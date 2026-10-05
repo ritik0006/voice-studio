@@ -1,0 +1,3 @@
+/* Voice Clone tab */
+.consent { font-size: 13px; display: flex; gap: 10px; align-items: flex-start; line-height: 1.4; }
+.consent input { margin-top: 3px; accent-color: #15e0eb; }

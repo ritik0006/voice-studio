@@ -1,0 +1,3 @@
+/* Text to Speech tab */
+.slider { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+.slider input { flex: 1; accent-color: #15e0eb; }

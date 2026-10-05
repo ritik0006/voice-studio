@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Studio - Ritik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/tabs.css">
+  <link rel="stylesheet" href="css/tts.css">
+  <link rel="stylesheet" href="css/clone.css">
+</head>
+<body>
+  <main class="hero">
+    <h1>Voice <span>Studio</span></h1>
+
+    <nav class="tabs">
+      <button class="tab active" data-panel="tts">Text to Speech</button>
+      <button class="tab" data-panel="stt">Speech to Text</button>
+      <button class="tab" data-panel="clone">Voice Clone</button>
+    </nav>
+
+    <!-- Feature 1: Text to Speech (browser voices) -> js/features/tts.js -->
+    <section class="panel" id="tts">
+      <textarea id="ttsText" placeholder="Yahan likho jo tumhe bolwana hai..."></textarea>
+      <div class="row">
+        <select id="voiceSelect" aria-label="Voice"></select>
+        <button class="btn" id="speakBtn"><img src="img/play.png" alt="">Listen</button>
+        <button class="btn ghost" id="stopBtn">Stop</button>
+      </div>
+      <label class="slider">Speed <input type="range" id="rate" min="0.5" max="2" step="0.1" value="1"> <output id="rateOut">1.0x</output></label>
+    </section>
+
+    <!-- Feature 2: Speech to Text (Whisper) -> js/features/stt.js -->
+    <section class="panel" id="stt" hidden>
+      <div class="row">
+        <button class="btn" id="sttRecBtn">Record</button>
+        <span class="timer" id="sttTimer">0:00</span>
+        <label class="btn ghost file">Upload audio<input type="file" id="sttFile" accept="audio/*,video/*" hidden></label>
+        <select id="sttLang" aria-label="Spoken language">
+          <option value="auto">Detect language</option>
+          <option value="hi">Hindi</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+      <audio id="sttPreview" controls hidden></audio>
+      <button class="btn wide" id="sttGoBtn" disabled>Transcribe</button>
+      <textarea id="sttOut" placeholder="Your transcript appears here."></textarea>
+      <div class="row">
+        <button class="btn ghost" id="sttCopy">Copy text</button>
+        <span class="status" id="sttStatus"></span>
+      </div>
+    </section>
+
+    <!-- Feature 3: Voice Clone (XTTS-v2) -> js/features/clone.js -->
+    <section class="panel" id="clone" hidden>
+      <p class="hint">Record or upload 6 to 15 seconds of clear speech with no background noise.</p>
+      <div class="row">
+        <button class="btn" id="cloneRecBtn">Record sample</button>
+        <span class="timer" id="cloneTimer">0:00</span>
+        <label class="btn ghost file">Upload sample<input type="file" id="cloneFile" accept="audio/*" hidden></label>
+      </div>
+      <audio id="clonePreview" controls hidden></audio>
+      <textarea id="cloneText" placeholder="Type what the cloned voice should say."></textarea>
+      <div class="row">
+        <select id="cloneLang" aria-label="Output language">
+          <option value="hi">Hindi</option>
+          <option value="en">English</option>
+        </select>
+        <button class="btn" id="cloneGoBtn" disabled>Generate voice</button>
+      </div>
+      <label class="consent"><input type="checkbox" id="consent"> This is my own voice, or the speaker has given me permission to clone it.</label>
+      <audio id="cloneResult" controls hidden></audio>
+      <a class="btn ghost wide" id="cloneDownload" download="cloned_voice.wav" hidden>Download audio</a>
+      <span class="status" id="cloneStatus"></span>
+    </section>
+  </main>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
